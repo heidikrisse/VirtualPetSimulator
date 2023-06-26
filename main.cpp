@@ -18,5 +18,29 @@ int main()
 
     std::cout << "Created a " << my_pet.get_type() << " named " << my_pet.get_name() << ".\n";
 
-    return 0;
+    while (true)
+    {
+        std::cout << "What would you like to do?\n";
+        std::cout << "1. Feed pet\n";
+        std::cout << "2. Exit\n";
+        std::cout << "Enter your choice: ";
+        int choice{};
+        std::cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+            my_pet.feed();
+            std::cout << "\nYou fed your " << my_pet.get_type() << " " << my_pet.get_name() << ".\n";
+            std::cout << "Happiness: " << my_pet.get_happiness() << "\n";
+            std::cout << "Fullness: " << my_pet.get_fullness() << "\n\n";
+
+            break;
+        case 2:
+            std::cout << "\nExiting program..\n";
+            return 0;
+        default:
+            std::cout << "Invalid choice. Please try again.\n\n";
+        }
+    }
 }
