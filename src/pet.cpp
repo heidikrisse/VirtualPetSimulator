@@ -14,6 +14,15 @@ std::string Pet::get_type() const
     return type;
 }
 
+void Pet::print_current_stats()
+{
+    std::cout << "Your " << type << " " << name << "'s current stats:\n";
+    std::cout << "Happiness: " << happiness << "%\n";
+    std::cout << "Fullness: " << fullness << "%\n";
+    std::cout << "Energy: " << energy << "%\n";
+    std::cout << "------------------\n\n";
+}
+
 void Pet::feed()
 {
     happiness += 10; // happiness increases by 10%
@@ -27,6 +36,10 @@ void Pet::feed()
     {
         fullness = MAX_FULLNESS;
     }
+
+    std::cout << "\nYou fed your " << type << " " << name << ".\n\n";
+
+    print_current_stats();
 }
 
 void Pet::play()
@@ -41,6 +54,10 @@ void Pet::play()
 
         energy -= 10; // energy decreases by 10 %
     }
+
+    std::cout << "\nYou played with your " << type << " " << name << ".\n\n";
+
+    print_current_stats();
 }
 
 void Pet::sleep()
@@ -50,6 +67,23 @@ void Pet::sleep()
     {
         energy = MAX_ENERGY;
     }
+
+    // Fullness and happiness decrease by 10%
+    fullness -= 10;
+    if (fullness < 0)
+    {
+        fullness = 0;
+    }
+
+    happiness -= 10;
+    if (happiness < 0)
+    {
+        happiness = 0;
+    }
+
+    std::cout << "\nYour " << type << " " << name << " has slept and gained more energy.\n\n";
+
+    print_current_stats();
 }
 
 int Pet::get_happiness() const
