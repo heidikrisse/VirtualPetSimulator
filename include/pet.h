@@ -13,6 +13,7 @@ public:
 
     void feed();
     void play();
+    void sleep();
     int get_happiness() const;
     int get_fullness() const;
     int get_energy() const;

@@ -76,8 +76,11 @@ TEST_CASE("Unit-Test 6: Testing pet maximum happiness limit with playing")
     Pet pet("Misuantti", "cat");
 
     for (int i{0}; i < 5; ++i)
+    {
         pet.play();
-
+        if (i % 2 == 0)  // after every two plays
+            pet.sleep(); // pet sleeps to get energy
+    }
     CHECK(pet.get_happiness() == 100); // Happiness should not exceed 100%
 }
 
@@ -92,4 +95,28 @@ TEST_CASE("Unit-Test 7: Testing pet minimum energy limit with playing")
         pet.play();
 
     CHECK(pet.get_energy() == 0); // Energy should not drop below 0%
+}
+
+/* Test to check if the sleep() correctly increases the pet's energy:
+ * -    Putting the pet to sleep once should increase energy by 50%. */
+TEST_CASE("Unit-Test 8: Testing pet sleep")
+{
+    Pet pet("Misuantti", "cat");
+
+    pet.sleep();
+
+    CHECK(pet.get_energy() == 70); // Increases energy by 50%
+}
+
+/* Test to check if the sleep() correctly handles the maximum limit for
+ * energy:
+ * -    Putting the pet to sleep twice should reach the maximum energy. */
+TEST_CASE("Unit-Test 9: Testing pet maximum energy limit with sleep")
+{
+    Pet pet("Misuantti", "cat");
+
+    for (int i{0}; i < 2; ++i)
+        pet.sleep();
+
+    CHECK(pet.get_energy() == 100); // Energy should not exceed 100%
 }
