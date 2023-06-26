@@ -12,20 +12,24 @@ public:
     std::string get_type() const;
 
     void feed();
+    void play();
     int get_happiness() const;
     int get_fullness() const;
+    int get_energy() const;
 
 private:
     std::string name;
     std::string type;
 
-    // Initial happiness and fullness values to 20 %.
+    // Initial happiness, fullness and energy values to 20 %.
     int happiness{20};
     int fullness{20};
+    int energy{20};
 
-    // Constants for max happiness and fullness are 100%.
+    // Constants for max happiness, fullness and energy are 100%.
     const int MAX_HAPPINESS{100};
     const int MAX_FULLNESS{100};
+    const int MAX_ENERGY{100};
 };
 
 #endif // PET_H

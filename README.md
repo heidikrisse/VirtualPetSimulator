@@ -8,6 +8,7 @@ of a virtual pet.
 You can
 * Create a new pet with a name and type you choose
 * Feed the pet, which increases the pet's happiness and fullness.
+* Play with the pet, which increases the pet's happiness but decreases it's energy
 
 # Build project
 
