@@ -33,6 +33,8 @@ private:
     const int MAX_HAPPINESS{100};
     const int MAX_FULLNESS{100};
     const int MAX_ENERGY{100};
+
+    void save_state_to_file();
 };
 
 #endif // PET_H
