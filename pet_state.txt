@@ -1,0 +1,5 @@
+Name: Misuantti
+Type: cat
+Happiness: 70%
+Fullness: 50%
+Energy: 50%

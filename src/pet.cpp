@@ -1,8 +1,12 @@
 // pet.cpp
 #include "../include/pet.h"
+#include <fstream>
 
 Pet::Pet(const std::string &name, const std::string &type)
-    : name(name), type(type) {}
+    : name(name), type(type)
+{
+    save_state_to_file();
+}
 
 std::string Pet::get_name() const
 {
@@ -12,6 +16,24 @@ std::string Pet::get_name() const
 std::string Pet::get_type() const
 {
     return type;
+}
+
+void Pet::save_state_to_file()
+{
+    std::ofstream pet_state_file("../pet_state.txt");
+
+    if (!pet_state_file.is_open())
+    {
+        throw std::runtime_error("Unable to open file to save pet state");
+    }
+
+    pet_state_file << "Name: " << name << "\n";
+    pet_state_file << "Type: " << type << "\n";
+    pet_state_file << "Happiness: " << happiness << "%\n";
+    pet_state_file << "Fullness: " << fullness << "%\n";
+    pet_state_file << "Energy: " << energy << "%\n";
+
+    pet_state_file.close();
 }
 
 void Pet::print_current_stats()
@@ -39,6 +61,7 @@ void Pet::feed()
 
     std::cout << "\nYou fed your " << type << " " << name << ".\n\n";
 
+    save_state_to_file();
     print_current_stats();
 }
 
@@ -57,6 +80,7 @@ void Pet::play()
 
     std::cout << "\nYou played with your " << type << " " << name << ".\n\n";
 
+    save_state_to_file();
     print_current_stats();
 }
 
@@ -83,6 +107,7 @@ void Pet::sleep()
 
     std::cout << "\nYour " << type << " " << name << " has slept and gained more energy.\n\n";
 
+    save_state_to_file();
     print_current_stats();
 }
 
