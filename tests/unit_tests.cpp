@@ -123,3 +123,27 @@ TEST_CASE("Unit-Test 9: Testing pet maximum energy limit with sleep")
 
     CHECK(pet.get_energy() == 100); // Energy should not exceed 100%
 }
+
+// Test if the pet's state can be correctly saved and loaded from a file.
+TEST_CASE("Unit-Test 10: Testing Pet State Save and Load from File")
+{
+    // Create a pet
+    Pet original_pet("Misuantti", "cat");
+    // Change its states
+    original_pet.feed();
+    original_pet.play();
+
+    // Save the state of the original pet to the file
+    original_pet.save_state_to_file();
+
+    // Create a new pet and load the state from the file
+    Pet loaded_pet("Unknown", "unknown");
+    loaded_pet.load_state_from_file();
+
+    // The state of the loaded pet should match the state of the original pet.
+    CHECK(loaded_pet.get_name() == original_pet.get_name());
+    CHECK(loaded_pet.get_type() == original_pet.get_type());
+    CHECK(loaded_pet.get_happiness() == original_pet.get_happiness());
+    CHECK(loaded_pet.get_fullness() == original_pet.get_fullness());
+    CHECK(loaded_pet.get_energy() == original_pet.get_energy());
+}

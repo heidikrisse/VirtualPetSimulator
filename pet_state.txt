@@ -1,5 +1,5 @@
 Name: Misuantti
 Type: cat
-Happiness: 0
-Fullness: 0
-Energy: 100
+Happiness: 50
+Fullness: 40
+Energy: 10
