@@ -20,7 +20,8 @@ std::string Pet::get_type() const
 
 void Pet::save_state_to_file()
 {
-    std::ofstream pet_state_file("../pet_state.txt");
+    std::string file_path{"../pet_state.txt"};
+    std::ofstream pet_state_file(file_path);
 
     if (!pet_state_file.is_open())
     {
@@ -29,9 +30,54 @@ void Pet::save_state_to_file()
 
     pet_state_file << "Name: " << name << "\n";
     pet_state_file << "Type: " << type << "\n";
-    pet_state_file << "Happiness: " << happiness << "%\n";
-    pet_state_file << "Fullness: " << fullness << "%\n";
-    pet_state_file << "Energy: " << energy << "%\n";
+    pet_state_file << "Happiness: " << happiness << "\n";
+    pet_state_file << "Fullness: " << fullness << "\n";
+    pet_state_file << "Energy: " << energy << "\n";
+
+    pet_state_file.close();
+}
+
+void Pet::load_state_from_file()
+{
+    std::string file_path{"../pet_state.txt"};
+    std::ifstream pet_state_file(file_path);
+
+    if (!pet_state_file.is_open())
+    {
+        throw std::runtime_error("Unable to open file to load pet state");
+    }
+
+    std::string line;
+    while (getline(pet_state_file, line))
+    {
+        size_t separator_position{line.find(":")};
+        if (separator_position != std::string::npos)
+        {
+            std::string key{line.substr(0, separator_position)};
+            std::string value{line.substr(separator_position + 2)}; // skipping ": "
+
+            if (key == "Name")
+            {
+                name = value;
+            }
+            else if (key == "Type")
+            {
+                type = value;
+            }
+            else if (key == "Happiness")
+            {
+                happiness = std::stoi(value);
+            }
+            else if (key == "Fullness")
+            {
+                fullness = std::stoi(value);
+            }
+            else if (key == "Energy")
+            {
+                energy = std::stoi(value);
+            }
+        }
+    }
 
     pet_state_file.close();
 }
