@@ -3,6 +3,7 @@
 #define PET_H
 
 #include <string>
+#include <iostream>
 
 class Pet
 {
@@ -17,6 +18,7 @@ public:
     int get_happiness() const;
     int get_fullness() const;
     int get_energy() const;
+    void print_current_stats();
 
 private:
     std::string name;
