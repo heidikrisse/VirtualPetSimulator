@@ -20,6 +20,9 @@ public:
     int get_energy() const;
     void print_current_stats();
 
+    void save_state_to_file();
+    void load_state_from_file();
+
 private:
     std::string name;
     std::string type;
@@ -33,8 +36,6 @@ private:
     const int MAX_HAPPINESS{100};
     const int MAX_FULLNESS{100};
     const int MAX_ENERGY{100};
-
-    void save_state_to_file();
 };
 
 #endif // PET_H

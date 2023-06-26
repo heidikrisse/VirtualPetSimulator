@@ -2,6 +2,7 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "../include/doctest.h"
 #include "../include/pet.h"
+#include <fstream>
 
 /* Test to check if a pet is correctly created with a name, type and
  * initial values of happiness and fullness. */
@@ -75,10 +76,11 @@ TEST_CASE("Unit-Test 6: Testing pet maximum happiness limit with playing")
 {
     Pet pet("Misuantti", "cat");
 
-    for (int i{0}; i < 10; ++i)
+    // To make sure the pet has enough energy to play 5x
+    pet.sleep();
+
+    for (int i{0}; i < 5; ++i)
     {
-        if (i % 2 == 0 && i != 0) // after every two plays but not at the beginning
-            pet.sleep();          // pet sleeps to get energy
         pet.play();
     }
 
