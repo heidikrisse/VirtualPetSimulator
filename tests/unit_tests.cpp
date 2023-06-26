@@ -75,12 +75,13 @@ TEST_CASE("Unit-Test 6: Testing pet maximum happiness limit with playing")
 {
     Pet pet("Misuantti", "cat");
 
-    for (int i{0}; i < 5; ++i)
+    for (int i{0}; i < 10; ++i)
     {
+        if (i % 2 == 0 && i != 0) // after every two plays but not at the beginning
+            pet.sleep();          // pet sleeps to get energy
         pet.play();
-        if (i % 2 == 0)  // after every two plays
-            pet.sleep(); // pet sleeps to get energy
     }
+
     CHECK(pet.get_happiness() == 100); // Happiness should not exceed 100%
 }
 
