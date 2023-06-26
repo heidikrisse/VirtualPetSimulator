@@ -5,7 +5,6 @@
 Pet::Pet(const std::string &name, const std::string &type)
     : name(name), type(type)
 {
-    save_state_to_file();
 }
 
 std::string Pet::get_name() const
