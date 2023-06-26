@@ -54,3 +54,42 @@ TEST_CASE("Unit-Test 4: Testing pet maximum happiness limit")
 
     CHECK(pet.get_happiness() == 100); // Happiness should not exceed 100%
 }
+
+/* Test to check if the play() correctly increases the pet's happiness and
+ * decreases energy:
+ * -    Playing with the pet once should increase happiness by 20% and decrease energy by 10%. */
+TEST_CASE("Unit-Test 5: Testing pet playing")
+{
+    Pet pet("Misuantti", "cat");
+
+    pet.play();
+
+    CHECK(pet.get_happiness() == 40); // Now increases happiness by 20%
+    CHECK(pet.get_energy() == 10);    // Decreases energy by 10%
+}
+
+/* Test to check if the play() correctly handles the maximum limit for
+ * happiness:
+ * -    Playing with the pet 5x should reach the maximum happiness. */
+TEST_CASE("Unit-Test 6: Testing pet maximum happiness limit with playing")
+{
+    Pet pet("Misuantti", "cat");
+
+    for (int i{0}; i < 5; ++i)
+        pet.play();
+
+    CHECK(pet.get_happiness() == 100); // Happiness should not exceed 100%
+}
+
+/* Test to check if the play() correctly handles the minimum limit for
+ * energy:
+ * -    Playing with the pet 3x should reach the minimum energy. */
+TEST_CASE("Unit-Test 7: Testing pet minimum energy limit with playing")
+{
+    Pet pet("Misuantti", "cat");
+
+    for (int i{0}; i < 3; ++i)
+        pet.play();
+
+    CHECK(pet.get_energy() == 0); // Energy should not drop below 0%
+}
