@@ -31,7 +31,7 @@ void Pet::feed()
 
 void Pet::play()
 {
-    if (energy > 0)
+    if (energy >= 10) // check if pet has enough energy to play
     {
         happiness += 20; // happiness increases by 20 %
         if (happiness > MAX_HAPPINESS)
@@ -40,10 +40,15 @@ void Pet::play()
         }
 
         energy -= 10; // energy decreases by 10 %
-        if (energy < 0)
-        {
-            energy = 0;
-        }
+    }
+}
+
+void Pet::sleep()
+{
+    energy += 50; // energy increases by 50%
+    if (energy > MAX_ENERGY)
+    {
+        energy = MAX_ENERGY;
     }
 }
 
